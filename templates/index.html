@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Insurance Analyzer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      background: #f1f1f1;
+    }
+    .container {
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      margin: auto;
+      border-radius: 12px;
+      box-shadow: 0 0 10px #ccc;
+    }
+    input, textarea, button {
+      width: 100%;
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 1rem;
+    }
+    button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    #response {
+      margin-top: 20px;
+      background: #f8f8f8;
+      padding: 15px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Insurance Policy Analyzer (No API)</h2>
+    <form id="form" enctype="multipart/form-data">
+      <input type="file" name="file" required>
+      <textarea name="user_input" placeholder="Describe the case (e.g., age, procedure, duration, location)" rows="5" required></textarea>
+      <button type="submit">Analyze</button>
+    </form>
+    <div id="response"></div>
+  </div>
+
+  <script>
+    document.getElementById("form").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const res = await fetch("/analyze", {
+        method: "POST",
+        body: formData
+      });
+      const data = await res.json();
+      document.getElementById("response").innerHTML = data.error ? 
+        `<p style="color:red;">${data.error}</p>` : 
+        `<strong>Decision:</strong> ${data.decision}<br>
+         <strong>Amount:</strong> ${data.amount || "N/A"}<br>
+         <strong>Justification:</strong><br>${data.justification}`;
+    });
+  </script>
+</body>
+</html>
