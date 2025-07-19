@@ -1,5 +1,8 @@
 import os
 import docx
+import nltk
+nltk.download('punkt')
+
 import PyPDF2
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
