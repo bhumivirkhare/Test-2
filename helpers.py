@@ -2,7 +2,7 @@ import os
 import docx 
 import nltk
 nltk.download('punkt')
-
+nltk.data.path.append('/home/codespace/nltk_data')
 import PyPDF2
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
