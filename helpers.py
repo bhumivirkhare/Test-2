@@ -7,6 +7,7 @@ import PyPDF2
 import nltk
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from nltk.tokenize import sent_tokenize
 
 nltk.download('punkt')
 
