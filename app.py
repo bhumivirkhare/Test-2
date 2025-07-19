@@ -60,4 +60,4 @@ if __name__ == '__main__':
     import webbrowser
     import threading
     port = 5000
-    threading.Timer(1.25, lambda: webbrowser.open(f"http://127.0.0.1:{port}")).
+    threading.Timer(1.25, lambda: webbrowser.open(f"http://127.0.0.1:{port}"))
